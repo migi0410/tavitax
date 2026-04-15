@@ -1,6 +1,7 @@
 import { Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from '@next/third-parties/google';
+import Script from 'next/script';
 
 // 1. Cấu hình Font chữ
 const beVietnam = Be_Vietnam_Pro({
@@ -29,6 +30,17 @@ export default function RootLayout({
       <body className={`${beVietnam.className} overflow-x-hidden text-gray-900 antialiased`}>
         {children}
         
+        {/* Microsoft Clarity Tracking Code */}
+        <Script id="microsoft-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "wc8yk7sdcg");
+          `}
+        </Script>
+
         {/* Google Analytics - Nhớ thay mã G-XXXXXXXXXX thật của bạn vào đây */}
         <GoogleAnalytics gaId="G-GBC4VLC9XW" /> 
       </body>
