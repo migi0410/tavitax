@@ -30,7 +30,7 @@ export default function RootLayout({
         {children}
         
         {/* Google Analytics - Nhớ thay mã G-XXXXXXXXXX thật của bạn vào đây */}
-        <GoogleAnalytics gaId="G-533208473" /> 
+        <GoogleAnalytics gaId="G-GBC4VLC9XW" /> 
       </body>
     </html>
   );
