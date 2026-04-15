@@ -2,8 +2,23 @@
 import { motion } from "framer-motion";
 import { Phone, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { sendGAEvent } from "@/lib/ga-events"; // Import hàm helper
 
 export default function CTASection() {
+  // Hàm xử lý khi click nút
+  const handleContactClick = () => {
+    // 1. Gửi dữ liệu về Google Analytics
+    sendGAEvent("click_contact_button", {
+      event_category: "Conversion",
+      event_label: "CTA_Section_Bottom",
+      button_name: "Liên hệ tư vấn miễn phí"
+    });
+
+    // 2. Chuyển hướng hoặc gọi điện (Tùy bạn muốn)
+    // window.location.href = "tel:0784938687"; 
+    console.log("Đã ghi nhận lượt click và chuẩn bị gọi điện/chuyển trang");
+  };
+
   return (
     <section className="py-20 bg-white font-sans">
       <div className="container mx-auto px-6 lg:px-12">
@@ -47,7 +62,7 @@ export default function CTASection() {
               </motion.p>
             </div>
 
-            {/* Chỉ còn duy nhất 1 nút Liên hệ */}
+            {/* Nút Liên hệ có gắn sự kiện onClick */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -55,7 +70,10 @@ export default function CTASection() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="mt-10 w-full sm:w-auto"
             >
-              <button className="flex items-center justify-center gap-3 bg-[#900020] text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-[#A50024] hover:shadow-[0_10px_40px_-10px_rgba(144,0,32,0.8)] transition-all active:scale-95 group w-full sm:w-auto">
+              <button 
+                onClick={handleContactClick} // <--- THÊM DÒNG NÀY Ở ĐÂY
+                className="flex items-center justify-center gap-3 bg-[#900020] text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-[#A50024] hover:shadow-[0_10px_40px_-10px_rgba(144,0,32,0.8)] transition-all active:scale-95 group w-full sm:w-auto"
+              >
                 <Phone className="w-5 h-5 fill-current" />
                 Liên hệ tư vấn miễn phí
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
